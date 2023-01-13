@@ -82,7 +82,7 @@ This work was conducted under the project Precise and Authentic User Location An
 
 ## Further information
 
-This library is further documented in a [paper]{galileo_has.pdf} published in proceedings of the [ION-GNSS+ 2022 conference](https://www.ion.org/gnss/abstracts.cfm?paperID=11477) as well as in a [Master's thesis]( https://aaltodoc.aalto.fi/handle/123456789/112893).
+This library is further documented in a [paper](galileo_has.pdf) published in proceedings of the [ION-GNSS+ 2022 conference](https://www.ion.org/gnss/abstracts.cfm?paperID=11477) as well as in a [Master's thesis]( https://aaltodoc.aalto.fi/handle/123456789/112893).
 If you wish to refer to this work in your publication, please cite the ION-GNSS paper.
 
 ## Disclaimer
