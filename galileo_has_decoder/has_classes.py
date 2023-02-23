@@ -5,6 +5,7 @@ HAS message classes
 
 VER   DATE        AUTHOR
 1.0   09/12/2021  Oliver Horst / FGI
+1.0.1 23/02/2023  Discarding redundant HAS pages. Bugfix by FGI
 '''
 
 from reedsolo import RSCodec, ReedSolomonError
@@ -40,7 +41,7 @@ class HAS:
       self.status = msg[0][:2]
       self.mType = msg[0][4:6]
       self.mID = int(msg[0][6:11], base=2)
-      self.mSize = int(msg[0][12:16], base=2)+1
+      self.mSize = int(msg[0][12:16], base=2)+1      
 
   def addPage(self, msg, pid=None, t=None, verb=0):
     if self.mID == None:
@@ -48,6 +49,7 @@ class HAS:
       self.mType = msg[4:6]
       self.mID = int(msg[6:11], base=2)
       self.mSize = int(msg[12:16], base=2)+1
+
     if self.t0 == None:
       if t != None: self.t0 = t 
       else: self.t0 = time.time()
@@ -58,10 +60,17 @@ class HAS:
       else: 
         if time.time()-self.t0 > self.TIMELIMIT:
           raise Page_timeout_Error("The given page's timestamp does exceed the timelimit!")
-    if pid is None:
+    if pid is None:      
       pageID = int(msg[16:24], base=2)
     else:
-      pageID = pid
+      pageID = pid    
+    
+    if (pageID-1) in self.rec and self.pages[pageID-1] != bits2Bytes(msg[24:]):
+        raise HAS_Error( "received a new version of an existing page id, but with different data!" )
+        
+    if pageID == 0 or (pageID-1) in self.rec :   # 0 is reserved
+        return len(self.rec)>=self.mSize
+    
     self.rec += [pageID-1]
     if verb>4:
       print("Page ID to add: ", pageID)
