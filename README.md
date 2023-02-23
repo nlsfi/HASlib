@@ -77,9 +77,9 @@ Most parts of the library can also be used independently for special use cases. 
 ## Tests
 
 Tests-folder includes Zip-file comprising of two SBF-files recorded in FGI offices in Otaniemi, Espoo, Finland. Unzip the files and test decoding, for example, via the HAS_converter.py:
-
+```
 > python3 HAS_Converter.py -s ./Tests/galileo_ssr000.sbf -f RTCM -t log.out -x 3000  
-
+```
 Specifications for the test recordings can be found in [ReadMe.md](Tests/ReadMe.md)
 
 ## License
