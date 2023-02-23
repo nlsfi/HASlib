@@ -4,6 +4,9 @@ The Galileo HAS Decoder library is a repository for Python 3, capable of decodin
 Messages are collected and, as possible, decoded into Galileo High Accuracy Service (HAS) messages, containing Precise Point Positioning (PPP) corrections for navigation messages from both the GPS and the Galileo constellations.  
 Additionally, messages can be converted into RTCM3 SSR or IGS SSR messages. Converted messages can be directly passed on via a TCP server or locally saved as a file. For the latter, a possible output mode is a special PPP Wizard-conform format, which can directly be processed by the processing module of it. 
 
+# Version 1.0.1 UPDATE!
+Several additions and bugfixes submitted 23.02.2023, including bugfix for handling redundant HAS pages and enabling HAS operational mode. Please update your local repository to the newest version. 
+
 ## Requirements
 The Python version used for the library is v3.9.6.  
 Please see [Notice.txt](Notice.txt) for required dependencies.
@@ -79,6 +82,8 @@ This software can decode the HAS SiS ICD. If the HAS SiS ICD is used, the terms 
 ## Acknowledgement
 
 This work was conducted under the project Precise and Authentic User Location Analysis (PAULA), funded by the European Commission DG-DEFIS under contract DEFIS/2020/OP/0002.
+
+We wish to acknowledge JRC for their significant help for addressing and fixing HASlib software issues and furthermore, testing the library!
 
 ## Further information
 
