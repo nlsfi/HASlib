@@ -5,6 +5,7 @@ SSR structure classes
 
 VER   DATE        AUTHOR
 1.0   09/12/2021  Oliver Horst / FGI
+1.0.1 23/02/2023  Bugfixes / Improved error handling by FGI
 '''
 
 from galileo_has_decoder.utils import sign, bidict, findNth
@@ -59,6 +60,7 @@ class Mask:
     cellMaskSize = satnum*signum*self.cellMaskFlag
     if self.cellMaskFlag: 
       self.cellMask, i = msg[i:i+cellMaskSize], i+cellMaskSize
+
     self.navMsg, i = int(msg[i:i+3], 2), i+3
     return i
 
@@ -414,10 +416,17 @@ class SSR_HAS:
             4:self.rdCodeBias, 5:self.rdPhaseBias}
     self.ssr.header = Header(msg)
     i = 32
-    blocks = list(zip(self.ssr.header.msgContent.values(), range(6)))
+    blocks = list(zip(self.ssr.header.msgContent.values(), range(6)))        
+    
     if blocks[0][0]:
-      maskID = self.ssr.header.maskID
-      i = self.rdMasks(msg, i)
+      maskID = self.ssr.header.maskID  
+      try:
+          i = self.rdMasks(msg, i)      
+      except Exception:
+          if verb >= 1:
+              print("Error reading mask; message discarded")
+          return
+          
       self.HAS_MASKS[maskID] = self.ssr.masks
       mask_avail = True
     else:
@@ -430,7 +439,14 @@ class SSR_HAS:
       self.valid = True
       for c in blocks[1:]:
         if c[0]:
-          i = self.ssr.read[c[1]](msg, i)
+          try:
+              i = self.ssr.read[c[1]](msg, i)
+          except Exception:
+              if verb >= 1:
+                  print("Error reading SSR data; message discarded")
+              self.valid = False
+              return
+          
           if verb>=6:
             print(i)
       if verb >= 3: 
