@@ -16,7 +16,7 @@ Download or clone the repository and use the following commands to install the l
 
     cd HASlib-main
     python setup.py bdist_wheel
-    pip install dist/galileo_has_decoder-1.0.0-py3-none-any.whl
+    pip install dist/galileo_has_decoder-1.0.1-py3-none-any.whl
   
 
 ## Usage
@@ -50,13 +50,13 @@ When an instance of `HAS_Converter` is created, it is possible to use the two fu
 Please note that these messages do not all have to be C/Nav messages or even valid ones, thus it may happen that a set of messages does not contain many, or even any, valid HAS messages. After each function call, a summary of the process is printed to the console. For more information on intermediate steps, you may use the `verbose` parameter on either of the `.convert` functions.
 
 ### CLI Usage
-For a simple interfacing via the command line, the _HAS\_Decoder.py_ file can be used. Most parameters can be set with this, which takes care of the aforementioned steps. The command is used as shown below:  
+For a simple interfacing via the command line, the _HAS\_Converter.py_ file can be used. Most parameters can be set with this, which takes care of the aforementioned steps. The command is used as shown below:  
 ```
 > python3 HAS_Converter.py -s data.sbf -f RTCM -t log.out -x 3000  
 ```
 This command sets up a decoder with exactly the same settings as shown in the previous library case. The correct usage is shown below, together with the available options.
 ```
->> python3 HAS_Decoder.py -s SOURCE -t TARGET -f OUTFORMAT [...options...]
+>> python3 HAS_Converter.py -s SOURCE -t TARGET -f OUTFORMAT [...options...]
 ```
 * -s arg    : Source stream to decode messages from  
 * -t arg : Target stream to decode messages to  
@@ -73,6 +73,14 @@ This command sets up a decoder with exactly the same settings as shown in the pr
 
 ### Advanced Usage
 Most parts of the library can also be used independently for special use cases. For further information on classes and functions please refer to the documentation.
+
+## Tests
+
+Tests-folder includes Zip-file comprising of two SBF-files recorded in FGI offices in Otaniemi, Espoo, Finland. Unzip the files and test decoding, for example, via the HAS_converter.py:
+
+> python3 HAS_Converter.py -s ./Tests/galileo_ssr000.sbf -f RTCM -t log.out -x 3000  
+
+Specifications for the test recordings can be found in [ReadMe.md](Tests/ReadMe.md)
 
 ## License
 
