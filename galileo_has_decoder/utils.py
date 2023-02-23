@@ -5,6 +5,7 @@ General utility functions
 
 VER   DATE        AUTHOR
 1.0   09/12/2021  Oliver Horst / FGI
+1.0.1 23/02/2023  Enabling of operational mode (flag on line 148) by FGI
 '''
 
 import numpy as np
@@ -144,7 +145,7 @@ def dataValid(data, hdr, verbose=0):
     return False
   if data[:14] != "11111111111111":
     return False
-  if hdr[0] != "00":
+  if hdr[0] != "00" and hdr[0] != "01":  # test (00) and operational modes (01) accepted
     return False
   if hdr[2] != "01":
     return False
