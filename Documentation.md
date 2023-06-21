@@ -1,6 +1,9 @@
 # Galileo HAS Decoder & Converter Documentation
-# VER   DATE        AUTHOR
-# 1.0   09/12/2021  Oliver Horst / FGI
+
+| VER | DATE | AUTHOR |
+| --- | ---- | ------ |
+| 1.0 | 09/12/2021 | Oliver Horst / FGI |
+| 1.0.2 | 31/05/2023 | Martti Kirkko-Jaakkola / FGI |
 
 ## Basic Usage
 ### HAS_Converter
@@ -253,7 +256,7 @@ Actual decoding of the HAS message, taking into account the outer layer encoding
 Returns the full decoded message in a bytearray.
 
 ### SSR Classes
-Classes to read and store the information of a decoded HAS message. The classes can be understood as containers for the information coming with a HAS message, where the message can be composed of different combinations of the following 6 contents: *Masks, Orbit Corrections, Full-Set Clock Corrections, Sub-Set Clock Corrections, Code Bias Corrections, Phase Bias Corrections*. The classes themselves normally have little functionality beyond the storing of information.
+Classes to read and store the information of a decoded HAS message. The classes can be understood as containers for the information coming with a HAS message, where the message can be composed of different combinations of the following 6 contents: *Masks, Orbit Corrections, Full-Set Clock Corrections, Sub-Set Clock Corrections, Code Bias Corrections, Phase Bias Corrections*. The classes themselves normally have little functionality beyond the storing of information. The data are stored with the sign conventions of the HAS format; any necessary conversions are on the responsibility of the output class.
 
 #### **SSR**
 Basic container for SSR corrections. Can save a set of IODs along with the other contained SSR information.
