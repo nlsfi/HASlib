@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
 '''
-SSR structure classes
+SSR structure classes. The data stored in these classes follow the HAS sign conventions.
 
 VER   DATE        AUTHOR
 1.0   09/12/2021  Oliver Horst / FGI
 1.0.1 23/02/2023  Bugfixes / Improved error handling by FGI
+1.0.2 31/05/2023  Martti Kirkko-Jaakkola / FGI
 '''
 
 from galileo_has_decoder.utils import sign, bidict, findNth
@@ -137,7 +138,7 @@ class Masks:
 
 class SatOrbit:
   iod = None
-  deltaRad = None
+  deltaRad = None          # in the HAS sign convention
   deltaInTrack = None
   deltaCrossTrack = None
   NAcount = None

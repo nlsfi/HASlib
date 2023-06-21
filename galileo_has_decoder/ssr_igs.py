@@ -5,6 +5,7 @@ IGS SSR message class
 
 VER   DATE        AUTHOR
 1.0   09/12/2021  Oliver Horst / FGI
+1.0.2 31/05/2023  Martti Kirkko-Jaakkola / FGI
 '''
 import numpy as np
 from galileo_has_decoder import crc
@@ -514,11 +515,12 @@ class SSR_IGS:
     return hdr
 
   def translateOrbit(self, orb):
-    dRad = round(orb.deltaRad / 0.0001)
+    # Because of different sign convention between HAS and IGS-SSR, invert the signs
+    dRad = -round(orb.deltaRad / 0.0001)
     dRad = np.binary_repr(dRad, 22)
-    dAlong = round(orb.deltaInTrack / 0.0004)
+    dAlong = -round(orb.deltaInTrack / 0.0004)
     dAlong = np.binary_repr(dAlong, 20)
-    dCross = round(orb.deltaCrossTrack / 0.0004)
+    dCross = -round(orb.deltaCrossTrack / 0.0004)
     dCross = np.binary_repr(dCross, 20)
     return dRad + dAlong + dCross
 

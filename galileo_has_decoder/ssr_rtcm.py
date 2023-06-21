@@ -5,6 +5,7 @@ RTCM3 SSR message class
 
 VER   DATE        AUTHOR
 1.0   09/12/2021  Oliver Horst / FGI
+1.0.2 31/05/2023  Martti Kirkko-Jaakkola / FGI
 '''
 
 from galileo_has_decoder.utils import bidict, bits2Bytes
@@ -142,9 +143,10 @@ class SSR_RTCM():
     return pages
 
   def translateOrbit(self, orb):
-    dRad = round(orb.deltaRad / 0.0001)
-    dAlong = round(orb.deltaInTrack / 0.0004)
-    dCross = round(orb.deltaCrossTrack / 0.0004)
+    # Because of different sign convention between HAS and RTCM-SSR, invert the signs
+    dRad = -round(orb.deltaRad / 0.0001)
+    dAlong = -round(orb.deltaInTrack / 0.0004)
+    dCross = -round(orb.deltaCrossTrack / 0.0004)
     dRad = np.binary_repr(dRad, 22)
     dAlong = np.binary_repr(dAlong, 20)
     dCross = np.binary_repr(dCross, 20)
