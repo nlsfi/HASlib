@@ -11,7 +11,6 @@ import struct
 import math
 import binascii
 from galileo_has_decoder.utils import bits2Bytes, gpst2time
-# from galileo_has_decoder.utils_sbf import splitStream, SBF_Block, IONO_Block
 from galileo_has_decoder.has_classes import HAS_Storage
 from galileo_has_decoder.ssr_converter import SSR_Converter
 from galileo_has_decoder.tcp_server import TCP_Server
@@ -132,7 +131,6 @@ class NOV_Reader:
                 output.write(msg_bytes, 2, 1, gpst2time(int(headerWeek), float(headerSeconds)))
               else:
                 output.write(msg_bytes)
-        pass
 
       currentLineNumber+=1
       continue
