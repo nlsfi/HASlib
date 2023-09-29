@@ -5,6 +5,7 @@ Main library interface class
 
 VER   DATE        AUTHOR
 1.0   09/12/2021  Oliver Horst / FGI
+Modified 29/09/2023  Jaakko Yliaho / Uwasa to add NOV_Reader
 '''
 
 from galileo_has_decoder.sbf_reading import SBF_Reader
@@ -12,6 +13,7 @@ from galileo_has_decoder.binex_reading import Binex_Reader
 from galileo_has_decoder.tcp_sbf_reading import TCP_SBF_Reader
 from galileo_has_decoder.tcp_binex_reading import TCP_Binex_Reader
 from galileo_has_decoder.serial_reading import Serial_SBF_Reader, Serial_Binex_Reader
+from galileo_has_decoder.nov_reading import NOV_Reader
 from galileo_has_decoder.tcp_server import TCP_Server
 from galileo_has_decoder.ssr_converter import SSR_Converter
 from galileo_has_decoder.file_write import File_Writer, PPP_Wiz_Writer
@@ -66,6 +68,9 @@ class HAS_Converter:
         elif modeIn == 6:
             inp = "BINEX TCP stream on " + str(source)
             self.reader = TCP_Binex_Reader(source)
+        elif modeIn == 7:
+            inp = "Novatel GALCNAVRAWPAGE ASCII file"
+            self.reader = NOV_Reader(source, skip=float(skip))
         #Target Initialization
         if modeOut == None:
             if target.replace(".", "").isnumeric() or target == 'localhost':
@@ -110,7 +115,7 @@ class HAS_Converter:
         #Convert all messages available from the source
         if verbose != 0 and self.converter != None:
             self.converter.setVerbose(verbose)
-        if self.modeIn == 1 or self.modeIn == 2 or self.modeIn == 5 or self.modeIn == 6:
+        if self.modeIn == 1 or self.modeIn == 2 or self.modeIn == 5 or self.modeIn == 6 or self.modeIn == 7:
             self.reader.read(converter=self.converter, output=self.output, compact=compact, HRclk=HRclk, verbose=verbose)
         elif self.modeIn == 3 or self.modeIn == 4:
             self.reader.read(converter=self.converter, output=self.output, compact=compact, HRclk=HRclk, verbose=verbose)
@@ -120,7 +125,7 @@ class HAS_Converter:
         if verbose != 0 and self.converter != None:
             self.converter.setVerbose(verbose)
         #Convert X messages from the source
-        if self.modeIn == 1 or self.modeIn == 2 or self.modeIn == 5 or self.modeIn == 6:
+        if self.modeIn == 1 or self.modeIn == 2 or self.modeIn == 5 or self.modeIn == 6 or self.modeIn == 7:
             self.reader.read(converter=self.converter, output=self.output, x=x, compact=compact, HRclk=HRclk, verbose=verbose)
         elif self.modeIn == 3 or self.modeIn == 4:
             self.reader.read(converter=self.converter, output=self.output, x=x, compact=compact, HRclk=HRclk, verbose=verbose)
@@ -130,7 +135,7 @@ class HAS_Converter:
         if verbose != 0 and self.converter != None:
             self.converter.setVerbose(verbose)
         #Convert messages from the source for s seconds
-        if self.modeIn == 1 or self.modeIn == 2:
+        if self.modeIn == 1 or self.modeIn == 2 or self.modeIn == 7:
             raise Mode_Error("ERROR: Timed constraint not available for file reading.")
         elif self.modeIn >= 3 and self.modeIn <= 6:
             self.reader.read(converter=self.converter, output=self.output, mode="t", x=s, compact=compact, HRclk=HRclk, verbose=verbose)

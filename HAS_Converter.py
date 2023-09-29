@@ -10,7 +10,7 @@ def printHelp():
     print("-t arg : Target stream to decode messages to")
     print("-f opt : Format to convert HAS messages to. Options are [1:IGS, 2:RTCM3]")
     print("-i opt : Input mode, specifying the type of input stream. Options are :",
-        "\n         [1:SBF File, 2:BINEX File, 3:SBF Serial, 4:BINEX Serial, 5:SBF TCP, 6:BINEX TCP]")
+        "\n         [1:SBF File, 2:BINEX File, 3:SBF Serial, 4:BINEX Serial, 5:SBF TCP, 6:BINEX TCP, 7:NOV-A File]")
     print("-o opt : Output mode, specifying the type of output stream. Options are:",
         "\n         [1:TCP, 2:File, 3:PPPWiz File, 4:PPPWiz Stream]")
     print("-p arg : Optional for TCP output. If not set, uses port 6947")
