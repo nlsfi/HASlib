@@ -41,8 +41,6 @@ class NOV_Reader:
         self.output = output
         self.pppWiz = True
 
-    i = 0
-    j = 0
     cnavs = 0
     hasnum=0
     currentLineNumber=0
@@ -77,7 +75,7 @@ class NOV_Reader:
         headerMessage="#GALCNAVRAWPAGEA"
 
       if headerMessage != "#GALCNAVRAWPAGEA":
-        if verbose >= 5:
+        if verbose >= 6:
           print("NOV-A Reader, line "+str(currentLineNumber)+", not a raw C/NAV page: "+str(headerMessage))
         currentLineNumber+=1
         continue
@@ -85,7 +83,7 @@ class NOV_Reader:
       # This is a raw C/NAV page, increase the counter
       cnavs+=1
 
-      if len(dataFields) != 4:
+      if len(dataFields) != 5:
         if verbose >= 5:
           print("NOV-A Reader: Invalid line format, wrong number of data fields, on line " + str(currentLineNumber))
         currentLineNumber+=1
@@ -106,7 +104,8 @@ class NOV_Reader:
       dataSignalChannel=dataFields[0]
       dataPRN=dataFields[1]
       dataMessageID=dataFields[2]
-      dataRawCNAV=dataFields[3]
+      dataPageID=dataFields[3]
+      dataRawCNAV=dataFields[4]
 
       rawCNAVBinaryString=''.join(format(x, '08b') for x in binascii.unhexlify(dataRawCNAV))
       # Remove the two extra bits at the end that are added for the ascii-hex representation of 464 bits instead of the C/NAV 462
