@@ -39,7 +39,7 @@ Parameters for the `HAS_Converter` are as follows:
 * `source`: The source. Can be a filename/path or portname.  
 * `target`: The output target. Can be a filename/path or an IP address for a TCP server.  
 * `out_format`: The format of the output. Options are [1:IGS, 2:RTCM3]  
-* `modeIn`: Optional. Determining the mode of input. If not set, looks for file endings.  Options are [1:SBF File, 2:BINEX File, 3:SBF Serial, 4:BINEX Serial, 5:SBF TCP, 6:BINEX TCP]  
+* `modeIn`: Optional. Determining the mode of input. If not set, looks for file endings.  Options are [1:SBF File, 2:BINEX File, 3:SBF Serial, 4:BINEX Serial, 5:SBF TCP, 6:BINEX TCP, 7:Novatel ASCII]  
 * `modeOut`: Optional. Determining the mode of output. If not set, decides based on all-numeric IP addresses (excl. dots)/localhost or not. Options are: [1:TCP, 2:File, 3:PPPWiz File, 4:PPPWiz Stream]  
 * `x`: Optional parameter. Used to indicate a maximum number of navigation messages to read. This includes all GNSS messages and is not limited to Galileo HAS messages.  
 * `port`: Optional parameter for TCP output. If not set, uses port 6947  
@@ -64,7 +64,7 @@ This command sets up a decoder with exactly the same settings as shown in the pr
 * -s arg    : Source stream to decode messages from  
 * -t arg : Target stream to decode messages to  
 * -f opt : Format to convert HAS messages to. Options are [1:IGS, 2:RTCM3]  
-* -i opt : Input mode, specifying the type of input stream. Options are : [1:SBF File, 2:BINEX File, 3:SBF Serial, 4:BINEX Serial, 5:SBF TCP, 6:BINEX TCP]  
+* -i opt : Input mode, specifying the type of input stream. Options are : [1:SBF File, 2:BINEX File, 3:SBF Serial, 4:BINEX Serial, 5:SBF TCP, 6:BINEX TCP, 7:Novatel ASCII]  
 * -o opt : Output mode, specifying the type of output stream. Options are: [1:TCP, 2:File, 3:PPPWiz File, 4:PPPWiz Stream]  
 * -p arg : Optional for TCP output. If not set, uses port 6947  
 * -b arg : Optional for serial input, specifying the baudrate of the stream. If not set, uses 115200  
