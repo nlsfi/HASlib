@@ -31,14 +31,14 @@ After installation, you are able to import and use it as follows:
 
 ```
 >> import galileo_has_decoder.conv as gal_conv
->> converter = gal_conv.HAS_Converter(source="data.sbf", target="log.out", out_format=2)
+>> converter = gal_conv.HAS_Converter(source="data.sbf", target="log.out", outFormat=2)
 >> converter.convertX(3000)
 ```
 This code reads pre-recorded data from the file *data.sbf* and saves converted HAS messages to the log-file *log.out*. HAS messages encountered are converted into the RTCM3 SSR format (mode *2*). Using the `.convertX(3000)` function, 3000 messages from the file indicated are read and encountering HAS messages are converted & output as indicated on initialization.  
 Parameters for the `HAS_Converter` are as follows:  
 * `source`: The source. Can be a filename/path or portname.  
 * `target`: The output target. Can be a filename/path or an IP address for a TCP server.  
-* `out_format`: The format of the output. Options are [1:IGS, 2:RTCM3]  
+* `outFormat`: The format of the output. Options are [1:IGS, 2:RTCM3]  
 * `modeIn`: Optional. Determining the mode of input. If not set, looks for file endings.  Options are [1:SBF File, 2:BINEX File, 3:SBF Serial, 4:BINEX Serial, 5:SBF TCP, 6:BINEX TCP]  
 * `modeOut`: Optional. Determining the mode of output. If not set, decides based on all-numeric IP addresses (excl. dots)/localhost or not. Options are: [1:TCP, 2:File, 3:PPPWiz File, 4:PPPWiz Stream]  
 * `x`: Optional parameter. Used to indicate a maximum number of navigation messages to read. This includes all GNSS messages and is not limited to Galileo HAS messages.  

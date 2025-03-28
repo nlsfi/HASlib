@@ -12,7 +12,7 @@ Basic class for using the library. Can be used for the whole pipeline from data 
 >**HAS_Converter**(*source, target, outFormat, modeIn, modeOut, port, baudrate, skip, mute*)  
 *source*: The source. Can be a filename/path or portname.   
 *target*: The output target. Can be a filename/path or an IP address for a TCP server.  
-*out_format*: The format of the output. Options are [1:IGS, 2:RTCM3].  
+*outFormat*: The format of the output. Options are [1:IGS, 2:RTCM3].  
 *modeIn*: Optional. Determining the mode of input. If not set, looks for file endings. Options are [1:SBF File, 2:BINEX File, 3:SBF Serial, 4:BINEX Serial, 5:SBF TCP, 6:BINEX TCP]   
 *modeOut*: Optional. Determining the mode of output. If not set, decides based on all-numeric IP (excl. dots) or not. Options are: [1:TCP, 2:File, 3:PPPWiz File, 4:PPPWiz Stream]  
 *port*: Optional for TCP output. If not set, uses port 6947.   
